@@ -33,5 +33,78 @@ Difficulty : Medium
 
 int * find_sequences(int *arr, int len){
 	//Return final array which has 6indexes [AP1_S,AP1_E,AP2_S,AP2_E,GP1_S,GP2_E]
-	return NULL;
+	if (arr == NULL)
+		return NULL;
+	int res[6];
+	int temp[20];
+	float a, b;
+	int iterator, iterator2, it, flag = 0;
+	int startap1, endap1;
+	for (iterator = 0; iterator < len; iterator++)
+	{
+		if (arr[iterator] - arr[iterator + 1] == (arr[iterator + 1] - arr[iterator + 2]))
+		{
+			if (flag == 0)
+			{
+				startap1 = iterator;
+				flag++;
+				endap1 = iterator + 2;
+			}
+			else
+			{
+				endap1 = iterator + 2;
+			}
+		}
+		else if (flag == 1)
+			break;
+	}
+	res[0] = startap1; res[1] = endap1;
+	
+	flag = 0;
+	for (iterator = res[1]; iterator < len; iterator++)
+	{
+	
+		if (arr[iterator] - arr[iterator + 1] == (arr[iterator + 1] - arr[iterator + 2]))
+		{
+			
+			if (flag == 0)
+			{
+				startap1 = iterator;
+				flag++;
+				endap1 = iterator + 2;
+			}
+			else
+			{
+				endap1 = iterator + 2;
+			}
+		}
+		else if (flag == 1)
+			break;
+	}
+	res[2] = startap1; res[3] = endap1;
+	
+	flag = 0;
+	for (iterator = 0; iterator < len; iterator++)
+	{
+		a = arr[iterator];
+		b = arr[iterator + 1];
+		if (arr[iterator] != 0 && arr[iterator + 1] != 0 && arr[iterator + 1] / a == (arr[iterator + 2] / b))
+		{
+			
+			if (flag == 0)
+			{
+				startap1 = iterator;
+				flag++;
+				endap1 = iterator + 2;
+			}
+			else
+			{
+				endap1 = iterator + 2;
+			}
+		}
+		else if (flag == 1)
+			break;
+	}
+	res[4] = startap1, res[5] = endap1;
+	return res;
 }
