@@ -35,7 +35,7 @@ int * find_sequences(int *arr, int len){
 	//Return final array which has 6indexes [AP1_S,AP1_E,AP2_S,AP2_E,GP1_S,GP2_E]
 	if (arr == NULL)
 		return NULL;
-	int res[6];
+	int *res = (int *)malloc(6 * sizeof(int));
 	int temp[20];
 	float a, b;
 	int iterator, iterator2, it, flag = 0;
